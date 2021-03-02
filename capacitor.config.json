@@ -1,0 +1,25 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "HealthyTime",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "ScrollEnabled": "ture",
+      "StatusBarOverlaysWebView": "true",
+      "BackupWebStorage": "none",
+      "SplashMaintainAspectRatio": "true",
+      "FadeSplashScreenDuration": "300",
+      "SplashShowOnlyFirstTime": "ture",
+      "SplashScreen": "screen",
+      "SplashScreenDelay": "3000",
+      "AutoHideSplashScreen": "ture"
+    }
+  }
+}
