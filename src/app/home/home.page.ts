@@ -59,7 +59,7 @@ export class HomePage {
 
       this.bodyclock = json;
     });
-    fetch('./assets/data-myclock/default-clock.json').then(res => res.json()).then(json => {
+    fetch('./assets/data-myclock/clock.json').then(res => res.json()).then(json => {
       console.log('connect');
       console.log('myclock log ##', json);
 
@@ -68,7 +68,6 @@ export class HomePage {
 
       this.myclock = json;
     });
-
 
     const arr = [12];
     // tslint:disable-next-line: forin
