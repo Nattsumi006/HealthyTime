@@ -6,15 +6,6 @@
 </ion-header>
 
 <ion-content>
-
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon size="large" name="add"></ion-icon>
-      <ion-label></ion-label>
-    </ion-fab-button>
-  </ion-fab> -->
-
-  <!-- for show clock -->
   <ion-row>
     <ion-col *ngFor="let item of myclock; let i = index;">
       <ion-card color="{{ item.color }}" (click)="gotoPage(item.url)">
@@ -25,7 +16,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-card color="light">
+      <ion-card color="light" (click)="createMyclock()">
         <ion-icon size="large" style="margin: 10%;" name="add"></ion-icon>
         <ion-card-header> สร้างนาฬิกาส่วนตัว </ion-card-header>
       </ion-card>
@@ -33,6 +24,4 @@
 
   </ion-row>
 
-
 </ion-content>
-

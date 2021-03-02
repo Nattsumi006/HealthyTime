@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crudclock',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudclockPage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl: NavController) { }
+
+  goback() {
+    this.navCtrl.pop();
+  }
 
   ngOnInit() {
   }

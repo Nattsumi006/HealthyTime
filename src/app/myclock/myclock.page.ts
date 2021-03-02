@@ -27,5 +27,8 @@ export class MyclockPage implements OnInit {
   gotoPage(i: string) {
     this.navCtrl.navigateForward(i);
   }
+  createMyclock(){
+    this.navCtrl.navigateForward("crudclock");
+  }
 
 }
