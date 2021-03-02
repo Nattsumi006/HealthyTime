@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-datetime slot="start" displayFormat="HH: mm" [(ngModel)]="myDate"></ion-datetime>
+
+    <ion-title style="text-align: center;">Healthy Time</ion-title>
+    <ion-icon (click)="presentAlert()" slot="end" style="margin-right: 2%;" name="alert-circle-outline"></ion-icon>
+    <ion-chip slot="end" (click)="loginPrompt()">
+      <ion-avatar class="avatar">
+        <img src="./assets/icon/user.png">
+      </ion-avatar>
+      <ion-label>Nattsumi</ion-label>
+    </ion-chip>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-slides slidesPerView="1" class="showion-slides">
+      <ion-slide *ngFor="let item of bodyclock">
+          <ion-card>
+             <ion-img src={{item.img}}></ion-img>
+             <p></p>
+             <ion-text style="margin-top: 2%; margin-bottom: 2%;">{{item.details}}</ion-text>
+             <p></p>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+
+      <ion-row>
+        <ion-header style="left: 3%;"> กิจกรรมที่ต้องทำ </ion-header>
+      </ion-row>
+
+      <ion-grid>
+        <ion-row class="ac-card">
+          <ion-col>
+           <ion-card>
+            Your first card content
+           </ion-card>
+          </ion-col>
+          <ion-col>
+           <ion-card>
+            <ion-datetime displayFormat="HH: mm" [(ngModel)]="myDate"></ion-datetime>
+             Your second card content
+           </ion-card>
+          </ion-col>
+          <ion-col>
+           <ion-card>
+             Your third card content
+           </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+       <!-- row score -->
+
+       <p></p>
+       <ion-row>
+        <ion-header style="left: 3%;"> คะแนนกิจกรรมเพื่อสุขภาพ </ion-header>
+      </ion-row>
+
+      <ion-row class="point-card">
+        <ion-card>
+          <ion-grid>
+            <ion-row>
+              <ion-text> เป้าหมายรายวันของคุณ </ion-text>
+            </ion-row>
+            <p></p>
+            <ion-progress-bar [value]="p_bar_value"></ion-progress-bar>
+            <ion-col> <p style="text-align: end;"><span *ngIf="p_bar_value">{{p_bar_value*100 | number}}%</span> </p> </ion-col>
+          </ion-grid>
+        </ion-card>
+      </ion-row>
+
+      <ion-row>
+        <ion-item-sliding *ngFor="let obj ; let i = index of goal" >
+          <ion-item>
+            <ion-label style="font-family:Mitr !important;">
+              <h2>{{obj.event}}</h2><h3 slot="end"><span *ngIf="p_bar_value">{{roundbar | number}}</span>{{obj.round}} ครั้ง</h3>
+            </ion-label>
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option color="success" (click)="setRound(i)">
+              <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-row>
+
+      <ion-row>
+          <ion-item *ngFor=" let i of goalDone">
+            <ion-label style="font-family:Mitr !important;">
+              <h2 style="text-decoration: line-through;">{{i}}</h2>
+            </ion-label>
+          </ion-item>
+      </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button >เพิ่ม</ion-fab-button>
+  <ion-fab-list side="top">
+    <div class="fab-backdrop"></div>
+    <ion-fab-button (click)="runDeterminateProgress()" data-desc="ทดสอบ เพื่มคะแนนกิจกรรม">
+      <ion-icon name="golf-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="runDeterminateProgress()" data-desc="เพิ่มนาฬิกา">
+      <ion-icon name="swap-vertical-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="history">
+        <ion-icon name="refresh" (click)="gotoPage(this.urlLink[0])"></ion-icon>
+        <ion-label>ประวัติกิจกรรม</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="event" (click)="presentToast()">
+        <ion-icon name="list"></ion-icon>
+        <ion-label>กิจกรรมของคุณ</ion-label>
+        <ion-badge color='warning'>1</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="myoclock" (click)="gotoPage(this.urlLink[2])" >
+      <ion-icon name="albums"></ion-icon>
+      <ion-label>นาฬิกาส่วนตัว</ion-label>
+      </ion-tab-button>
+
+     <ion-tab-button>
+       <!-- for fab -->
+     </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>

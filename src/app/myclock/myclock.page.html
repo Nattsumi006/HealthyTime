@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;"> นาฬิกาส่วนตัว </ion-title>
+    <ion-icon size="large" slot="end" (click)="goback()" style="margin-right: 3%;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon size="large" name="add"></ion-icon>
+      <ion-label></ion-label>
+    </ion-fab-button>
+  </ion-fab> -->
+
+  <!-- for show clock -->
+  <ion-row>
+    <ion-col *ngFor="let item of myclock; let i = index;">
+      <ion-card color="{{ item.color }}" (click)="gotoPage(item.url)">
+        <ion-icon size="large" style="margin: 10%;" name="{{ item.icon }}"></ion-icon>
+        <ion-card-header> {{ item.name }} </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card color="light">
+        <ion-icon size="large" style="margin: 10%;" name="add"></ion-icon>
+        <ion-card-header> สร้างนาฬิกาส่วนตัว </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+
+
+</ion-content>
+
