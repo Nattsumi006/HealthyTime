@@ -1,4 +1,4 @@
 [
-  {	"name"	:	"นาฬิกาพื้นฐาน"	,	"fileclock"	:	"./assets/data-myclock/default-clock.json"	,	"icon"	:	"accessibility"	,	"color"	:	"primary"	}	,
-{	"name"	:	"นาฬิกากินแบบ IF"	,	"fileclock"	:	"./assets/data-myclock/if-clock.json"	,	"icon"	:	"bicycle-outline"	,	"color"	:	"success"	}
+  {	"name"	:	"นาฬิกาพื้นฐาน"	,	"fileclock"	:	1	,	"icon"	:	"accessibility"	,	"color"	:	"primary"	}	,
+{	"name"	:	"นาฬิกากินแบบ IF"	,	"fileclock"	:	2	,	"icon"	:	"bicycle-outline"	,	"color"	:	"success"	}
 ]

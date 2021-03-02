@@ -3,7 +3,6 @@
     <ion-datetime slot="start" displayFormat="HH: mm" [(ngModel)]="myDate"></ion-datetime>
 
     <ion-title style="text-align: center;">Healthy Time</ion-title>
-    <ion-icon (click)="presentAlert()" slot="end" style="margin-right: 2%;" name="alert-circle-outline"></ion-icon>
     <ion-chip slot="end" (click)="loginPrompt()">
       <ion-avatar class="avatar">
         <img src="./assets/icon/user.png">
@@ -20,7 +19,7 @@
           <ion-card>
              <ion-img src={{item.img}}></ion-img>
              <p></p>
-             <ion-text style="margin-top: 2%; margin-bottom: 2%;">{{item.details}}</ion-text>
+             <ion-text style="margin: 2%;">{{item.details}}</ion-text>
              <p></p>
           </ion-card>
         </ion-slide>
@@ -115,18 +114,18 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="history">
+      <ion-tab-button>
         <ion-icon name="refresh" (click)="gotoPage(this.urlLink[0])"></ion-icon>
         <ion-label>ประวัติกิจกรรม</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="event" (click)="presentToast()">
+      <ion-tab-button (click)="presentToast()">
         <ion-icon name="list"></ion-icon>
         <ion-label>กิจกรรมของคุณ</ion-label>
         <ion-badge color='warning'>1</ion-badge>
       </ion-tab-button>
 
-      <ion-tab-button tab="myoclock" (click)="gotoPage(this.urlLink[2])" >
+      <ion-tab-button (click)="gotoPage(this.urlLink[2])" >
       <ion-icon name="albums"></ion-icon>
       <ion-label>นาฬิกาส่วนตัว</ion-label>
       </ion-tab-button>
