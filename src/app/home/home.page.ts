@@ -15,10 +15,10 @@ interface Goal {
 export class HomePage {
   urlLink: string[] = ['history', 'event', 'myclock' , 'crudclock' ];
   nextPage: string;
-
   bodyclock: any;
-  myclock: any;
+  clockJS: any;
   showLoader: boolean;
+  clockCard: string[];
   numProgress = 0;
   // tslint:disable-next-line: variable-name
   p_bar_value: number;
@@ -29,7 +29,7 @@ export class HomePage {
     {
       round : 1,
       event : 'ทานมื้อเช้า'
-    },{
+    }, {
       round : 1,
       event : 'พักสายตา 10 นาที'
     }, {
@@ -47,34 +47,26 @@ export class HomePage {
     public toastController: ToastController,
     public alertCtrl: AlertController,
     public statusBar: StatusBar,
-    ) {this.initializeApp(); }
+    ) {
+      this.initializeApp();
+      this.clockCard = new Array();
+    }
 
   initializeApp(){
     this.statusBar.styleDefault();
     fetch('./assets/data-bodyclock/bodyclock.json').then(res => res.json()).then(json => {
-      console.log('bodyclock log ##', json);
-
       console.log(this.myDate);
-      console.log('index card-bodyclock : 5');
-
+      console.log('bodyclock log', json);
       this.bodyclock = json;
     });
     fetch('./assets/data-myclock/clock.json').then(res => res.json()).then(json => {
-      console.log('connect');
-      console.log('myclock log ##', json);
-
-      console.log(this.myDate);
-      console.log('index card-myclock : 6');
-
-      this.myclock = json;
+      console.log('clock log ##', json);
+      this.clockJS = json;
+      this.clockCard.push(this.clockJS.dataclock[0][8]);
+      this.clockCard.push(this.clockJS.dataclock[0][9]);
+      this.clockCard.push(this.clockJS.dataclock[0][10]);
+      console.log( 'LOGGGGGGG clockCard have', this.clockCard );
     });
-
-    const arr = [12];
-    // tslint:disable-next-line: forin
-    for (const index in arr) {
-      console.log(index);
-      console.log(arr[index]);
-    }
   }
 
   async presentAlert() {

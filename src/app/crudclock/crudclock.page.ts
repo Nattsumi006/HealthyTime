@@ -7,14 +7,18 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./crudclock.page.scss'],
 })
 export class CrudclockPage implements OnInit {
+  clock: any;
 
-  constructor(public navCtrl: NavController) { }
-
-  goback() {
-    this.navCtrl.pop();
-  }
+  constructor(public navCtrl: NavController) {}
 
   ngOnInit() {
   }
 
+  goback() {
+    fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
+      console.log('clock log from JSON ## ', json);
+      this.clock = json;
+    });
+    this.navCtrl.pop();
+  }
 }
