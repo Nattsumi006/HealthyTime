@@ -69,7 +69,7 @@ export class HistoryPage implements OnInit {
           text: 'บันทึก',
           handler: data => {
             this.his[i].title = data.name1;
-            console.log('ข้อมูลถูกแก้ไข : '+data.name1);
+            console.log('ข้อมูลถูกแก้ไข : ' + data.name1);
           }
         }
       ]

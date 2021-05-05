@@ -149,6 +149,10 @@ export class HomePage {
     }
   }
 
+  confirm(){
+
+  }
+
   setRound(i) {
     this.roundbar = this.roundbar + 1;
     this.runDeterminateProgress();
