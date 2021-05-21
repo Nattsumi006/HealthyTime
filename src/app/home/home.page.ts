@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+
 interface Goal {
   round: number;
   event: string;
@@ -51,9 +52,8 @@ export class HomePage {
       this.initializeApp();
       this.clockCard = new Array();
     }
-
+  // LOAD DATA
   initializeApp(){
-    this.statusBar.styleDefault();
     fetch('./assets/data-bodyclock/bodyclock.json').then(res => res.json()).then(json => {
       console.log(this.myDate);
       console.log('bodyclock log', json);
@@ -65,22 +65,34 @@ export class HomePage {
       this.clockCard.push(this.clockJS.dataclock[0][8]);
       this.clockCard.push(this.clockJS.dataclock[0][9]);
       this.clockCard.push(this.clockJS.dataclock[0][10]);
-      console.log( 'LOGGGGGGG clockCard have', this.clockCard );
+      console.log( 'LOG clockCard have', this.clockCard );
     });
   }
 
+  // method for CHANGE PAGE
+  gotoPage(np: string) {
+    this.nextPage = np;
+    this.navCtrl.navigateForward(this.nextPage);
+  }
+  // method for Alert TEST
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Healthy time',
       subHeader: 'V 1.1.2' ,
       message: 'This is an alert message.',
-      buttons: ['OK']
+      buttons: [ {
+        text: 'ok',
+        handler: data => {
+          console.log('Cancel clicked');
+          confirm();
+        }
+      }]
     });
 
     await alert.present();
   }
-
+  // method for Login
   async loginPrompt() {
     const alert = await this.alertCtrl.create({
       header: 'Login',
@@ -114,6 +126,7 @@ export class HomePage {
     alert.present();
   }
 
+  // method for GOAL
   async presentToast() {
     const toast = await this.toastController.create({
       header: 'เพิ่มคะแนนให้กับคุณกับภารกิจในวันนี้',
@@ -136,41 +149,34 @@ export class HomePage {
     });
     toast.present();
   }
-
-  gotoPage(np: string) {
-    this.nextPage = np;
-    this.navCtrl.navigateForward(this.nextPage);
+  delets(i: number) {
+    this.goal.splice(i, 1);
   }
 
+  // GOAL show Point
   runDeterminateProgress() {
     this.numProgress = this.numProgress + 20;
     {
       this.setPercentBar(+this.numProgress);
     }
   }
-
-  confirm(){
-
-  }
-
-  setRound(i) {
-    this.roundbar = this.roundbar + 1;
-    this.runDeterminateProgress();
-    const check = this.goal[i].event;
-    console.log(check);
-    this.delets(i);
-
-  }
-
-  setPercentBar(i) {
+  // GOAL set PercentBar
+  setPercentBar(i: number) {
     setTimeout(() => {
       const apc = (i / 100);
       console.log(apc);
       this.p_bar_value = apc;
     }, 30 * i);
   }
+  setRound(i: number) {
+    this.roundbar = this.roundbar + 1;
+    this.runDeterminateProgress();
+    const check = this.goal[i].event;
+    console.log(check);
+    this.delets(i);
+  }
 
-  delets(i) {
-    this.goal.splice(i, 1);
+  confirm() {
+
   }
 }
