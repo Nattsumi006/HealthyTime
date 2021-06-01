@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-datetime id="dynamicDisabled" slot="start" displayFormat="HH: mm" [(ngModel)]="Datet"></ion-datetime>
+    <ion-datetime [(ngModel)]="date" displayFormat="HH: mm" slot="start" pickerFormat=""></ion-datetime>
     <ion-title style="text-align: center;">Healthy Time</ion-title>
     <ion-chip slot="end" (click)="presentAlert()">
       <ion-avatar class="avatar"><img src="./assets/icon/user.png"></ion-avatar>
@@ -41,6 +41,7 @@
     <ion-row>
       <ion-header style="left: 3%;"> คะแนนกิจกรรมเพื่อสุขภาพ </ion-header>
     </ion-row>
+
     <ion-row class="point-card">
       <ion-card>
         <ion-row>

@@ -9,7 +9,7 @@ import { NavController } from '@ionic/angular';
 export class MyclockPage implements OnInit {
   myclock: any;
 
-  constructor(public navCtrl: NavController,) {this.initializeApp();}
+  constructor(public navCtrl: NavController, ) {this.initializeApp(); }
 
   initializeApp(){
     fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
@@ -28,7 +28,7 @@ export class MyclockPage implements OnInit {
     this.navCtrl.navigateForward(i);
   }
   createMyclock(){
-    this.navCtrl.navigateForward("crudclock");
+    this.navCtrl.navigateForward('crudclock');
   }
 
 }

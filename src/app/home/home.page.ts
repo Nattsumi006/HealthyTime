@@ -18,6 +18,7 @@ export class HomePage {
   nextPage: string;
   showLoader: boolean;
   numProgress = 0;
+  // tslint:disable-next-line: variable-name
   p_bar_value: number;
   selectClock = 0;
   bodyclock: any;
@@ -25,7 +26,7 @@ export class HomePage {
   clockCard: string[];
   card: number;
   myDate = new Date();
-  Datet = new Date().toISOString();
+  date: any = new Date().toISOString();
   roundbar: number;
 
   // GOAL
@@ -70,14 +71,14 @@ export class HomePage {
       console.log('myclock log', json);
       console.log( 'myclock.dataclock.clockCard LIVE', this.clockCard );
       this.myclock = json;
-      // if else switch for MY CLOCK CARD NOW
+      // if else switch case for MYCLOCK CARD CURRENT
       if ((this.myDate.getHours() % 2) === 0) {
         this.card = (this.myDate.getHours() / 2);
       } else {
         this.card = ((this.myDate.getHours() - 1 ) / 2);
       }
       switch (this.card) {
-        case 0: this.card = 0; // 00:00 - 03:00 AM
+        case 0: this.card = 0;
                 break;
         case 1: this.card = 1;
                 break;
@@ -110,6 +111,7 @@ export class HomePage {
       this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card]);
       this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card + 1]);
       this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card + 2]);
+      console.log(this.date);
     });
   }
   // metthod for set MY CLOCK CARD

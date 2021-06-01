@@ -1,10 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>crudclock</ion-title>
-    <ion-icon size="large" slot="end" (click)="goback()" style="margin-right: 3%;" name="close-outline"></ion-icon>
+  <ion-toolbar color="{{color}}">
+    <ion-title>{{name}}</ion-title>
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item lines="full">
+    <ion-label position="floating">ระบุชื่อนาฬิกาส่วนตัว</ion-label>
+    <ion-input [(ngModel)]="name" placeholder="เช่น นาฬิกาเน้นออกกำลังกาย, นาฬิกาเน้นการพักผ่อน"></ion-input>
+  </ion-item>
 
+  <ion-item color="{{color}}">
+    <ion-label>เลือกสีนาฬิกาส่วนตัว</ion-label>
+    <ion-select [(ngModel)]="color" okText="เลือก" cancelText="ยกเลิก">
+      <ion-select-option value="primary">primary</ion-select-option>
+      <ion-select-option value="secondary">secondary</ion-select-option>
+      <ion-select-option value="tertiary">tertiary</ion-select-option>
+      <ion-select-option value="warning">warning</ion-select-option>
+      <ion-select-option value="light">light</ion-select-option>
+      <ion-select-option value="medium">medium</ion-select-option>
+      <ion-select-option value="dark">dark</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <p></p>
+  <ion-text style="margin-left: 3%;"> โปรดระบุ กิจกรรม ในแต่ละช่วงเวลา </ion-text>
+
+  <ion-item *ngFor="let item of time" lines="full">
+    <ion-label position="floating">{{item}}</ion-label>
+    <ion-input placeholder="กิจกรรมของคุณ"></ion-input>
+  </ion-item>
+
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" color="success">confirm</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" color="danger">cancel</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

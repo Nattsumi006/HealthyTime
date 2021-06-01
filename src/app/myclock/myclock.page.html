@@ -7,14 +7,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
-    <ion-col *ngFor="let item of myclock; let i = index;">
+  <ion-list>
+    <ion-item lines="full" *ngFor="let item of myclock; let i = index;">
+
+    </ion-item>
+    <ion-item>
+      <ion-label>Input (placeholder)</ion-label>
+      <ion-input placeholder="Placeholder"></ion-input>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-row>
+    <ion-col >
       <ion-card color="{{ item.color }}" (click)="gotoPage(item.url)">
         <ion-icon size="large" style="margin: 10%;" name="{{ item.icon }}"></ion-icon>
         <ion-card-header> {{ item.name }} </ion-card-header>
       </ion-card>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
   <ion-row>
     <ion-col>
       <ion-card color="light" (click)="createMyclock()">
