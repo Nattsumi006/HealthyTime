@@ -13,7 +13,7 @@ export class MyclockPage implements OnInit {
 
   initializeApp(){
     fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
-      console.log('datamyclock log from JSON ## ', json);
+
       this.myclock = json;
     });
   }
@@ -21,14 +21,20 @@ export class MyclockPage implements OnInit {
   ngOnInit() {
   }
 
-  goback() {
-    this.navCtrl.pop();
+  edit(i, n){
+    console.log('edit clock', i , 'name :', n);
   }
   gotoPage(i: string) {
     this.navCtrl.navigateForward(i);
   }
   createMyclock(){
     this.navCtrl.navigateForward('crudclock');
+  }
+  downloadClock(){
+    console.log('downloadClock is selected');
+  }
+  uploadClock(){
+    console.log('uploadClock is selected');
   }
 
 }

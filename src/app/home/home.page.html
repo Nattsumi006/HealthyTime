@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-datetime [(ngModel)]="date" displayFormat="HH: mm" slot="start" pickerFormat=""></ion-datetime>
     <ion-title style="text-align: center;">Healthy Time</ion-title>
-    <ion-chip slot="end" (click)="presentAlert()">
+    <ion-chip slot="end" (click)="gotoPage(this.urlLink[4])">
       <ion-avatar class="avatar"><img src="./assets/icon/user.png"></ion-avatar>
-      <ion-label>Anony</ion-label>
+      <ion-label>Nattsumi006</ion-label>
     </ion-chip>
   </ion-toolbar>
 </ion-header>
@@ -22,8 +22,8 @@
       </ion-slide>
     </ion-slides>
 
-    <ion-row>
-      <ion-header style="left: 3%;"> กิจกรรมที่ต้องทำ </ion-header>
+    <ion-row lines="none">
+      <ion-header style="left: 3%;"> นาฬิกาส่วนตัว </ion-header>
     </ion-row>
 
     <ion-row class="ac-card">
@@ -44,12 +44,12 @@
 
     <ion-row class="point-card">
       <ion-card>
-        <ion-row>
+        <ion-item lines="none">
             <ion-text> เป้าหมายรายวันของคุณ </ion-text>
-        </ion-row>
+        </ion-item>
         <p></p>
         <ion-progress-bar [value]="p_bar_value"></ion-progress-bar>
-        <ion-col> <p style="text-align: end;"><span *ngIf="p_bar_value">{{p_bar_value*100 | number}}%</span> </p> </ion-col>
+        <ion-col> <p style="text-align: end; margin-right: 2%;"><span *ngIf="p_bar_value">{{p_bar_value*100 | number}}%</span> </p> </ion-col>
       </ion-card>
     </ion-row>
 
@@ -69,7 +69,7 @@
       </ion-row>
 
       <ion-row>
-          <ion-item *ngFor=" let i of goalDone">
+          <ion-item *ngFor=" let i of goalDone" lines="full">
             <ion-label style="font-family:Mitr !important;">
               <h2 style="text-decoration: line-through;">{{i}}</h2>
             </ion-label>

@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signup</ion-title>
+    <ion-title>ลงทะเบียน</ion-title>
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list lines="full">
+    <ion-list-header>กรุณากรอกข้อมูลให้ครบ</ion-list-header>
+    <ion-item>
+      <ion-label >ชื่อสมาชิก</ion-label>
+      <ion-input [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label >อีเมล</ion-label>
+      <ion-input [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label >รหัสผ่าน</ion-label>
+      <ion-input [(ngModel)]="password" type="password" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label >รหัสผ่านอีกครั้ง</ion-label>
+      <ion-input [(ngModel)]="password2" type="password" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{valuePass}}" disabled></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="testPass()">ตรวจสอบรหัสผ่าน</ion-button>
+    <div *ngIf="hideMe">
+      <ion-button color="success" expand="block" (click)="testPass()">ลงทะเบียน</ion-button>
+    </div>
+  </ion-list>
+  <p></p>
+
+  <ion-list>
+    <ion-list-header>ตัวอย่างข้อมูลที่แสดงผล</ion-list-header>
+    <p></p>
+    <ion-item lines="full">
+      <ion-toolbar>
+          <ion-text slot="start">{{date}}</ion-text>
+        <ion-title>Healthy Time</ion-title>
+        <ion-chip slot="end">
+          <ion-label>{{username}}</ion-label>
+        </ion-chip>
+      </ion-toolbar>
+
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>

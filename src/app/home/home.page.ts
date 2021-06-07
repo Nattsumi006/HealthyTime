@@ -14,7 +14,7 @@ interface Goal {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  urlLink: string[] = ['history', 'event', 'myclock' , 'crudclock' ];
+  urlLink: string[] = ['history', 'event', 'myclock', 'crudclock', 'signup'];
   nextPage: string;
   showLoader: boolean;
   numProgress = 0;
