@@ -23,7 +23,7 @@ export class HomePage {
   selectClock = 0;
   bodyclock: any;
   myclock: any;
-  clockCard: string[];
+  clockCard = new Array();
   card: number;
   myDate = new Date();
   date: any = new Date().toISOString();
@@ -49,6 +49,7 @@ export class HomePage {
       event : 'ออกกำลังกาย 30 นาที'
     },
   ];
+  event: any;
 
   constructor(
     public navCtrl: NavController,
@@ -58,11 +59,23 @@ export class HomePage {
     private file: File
     ) {
       this.initializeApp();
-      this.clockCard = new Array();
     }
 
   // LOAD DATA
   initializeApp(){
+    fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
+      this.event = json;
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.event.length; i++) {
+        for (let j = 0; j < this.event.length; j++) {
+          if (this.event[j][2].status === true) {
+              this.event.splice(j, 1);
+          } else {
+          }
+        }
+      }
+      this.event = this.event.length;
+    });
     fetch('./assets/data-bodyclock/bodyclock.json').then(res => res.json()).then(json => {
       console.log('bodyclock log', json);
       this.bodyclock = json;
@@ -77,41 +90,13 @@ export class HomePage {
       } else {
         this.card = ((this.myDate.getHours() - 1 ) / 2);
       }
-      switch (this.card) {
-        case 0: this.card = 0;
-                break;
-        case 1: this.card = 1;
-                break;
-        case 2: this.card = 2;
-                break;
-        case 3: this.card = 3;
-                break;
-        case 4: this.card = 4;
-                break;
-        case 5: this.card = 5;
-                break;
-        case 6: this.card = 6;
-                break;
-        case 7: this.card = 7;
-                break;
-        case 8: this.card = 8;
-                break;
-        case 9: this.card = 9;
-                break;
-        case 10: this.card = 10;
-                 break;
-        case 11: this.card = 11;
-                 break;
-        case 12: this.card = 12;
-                 break;
-        default:
-            console.log('Something wrong!');
-            break;
+      for (let index = 0; index < 3; index++) {
+        if (this.card + index > 11 ) {
+          this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card - index - 8 ]);
+        } else {
+          this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card + index]);
+        }
       }
-      this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card]);
-      this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card + 1]);
-      this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card + 2]);
-      console.log(this.date);
     });
   }
   // metthod for set MY CLOCK CARD

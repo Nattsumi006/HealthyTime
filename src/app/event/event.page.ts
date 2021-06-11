@@ -11,9 +11,31 @@ export class EventPage implements OnInit {
   event: any ;
   date: any = new Date().toISOString();
 
-  constructor(public navCtrl: NavController , public alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController , public alertCtrl: AlertController) { this.initializeApp(); }
+
+  initializeApp(){
+    fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
+
+      this.event = json;
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.event.length; i++) {
+        this.check();
+      }
+
+      console.log(this.event);
+    });
+  }
+
   goback() {
     this.navCtrl.pop();
+  }
+  check(){
+    for (let i = 0; i < this.event.length; i++) {
+      if (this.event[i][2].status === true) {
+        this.del(i);
+     } else {
+     }
+    }
   }
   async edit(i) {
     const prompt = await this.alertCtrl.create({
@@ -22,7 +44,7 @@ export class EventPage implements OnInit {
       inputs: [
         {
           cssClass: 'my-custom-class',
-          name: 'name1',
+          name: 'name',
           type: 'text',
           placeholder: 'หัวเรื่อง เช่น ออกกำลังกาย',
         },
@@ -37,8 +59,8 @@ export class EventPage implements OnInit {
         {
           text: 'บันทึก',
           handler: data => {
-            // this.his[i].title = data.name1;
-            console.log('ข้อมูลถูกแก้ไข : ' + data.name1);
+            this.event[i][0].name = data.name;
+            console.log('ข้อมูลถูกแก้ไข : ' + data.name);
           }
         }
       ]
@@ -47,8 +69,9 @@ export class EventPage implements OnInit {
 
   }
 
-  delets(i) {
-    // this.his.splice(i, 1);
+  del(i) {
+    console.log('delete' + this.event[i][0].name);
+    this.event.splice(i, 1);
   }
 
   ngOnInit() {

@@ -22,7 +22,7 @@ export class SignupPage implements OnInit {
         this.valuePass = 'รหัสผ่านถูกต้อง' ;
         this.hide();
       }else{
-        this.valuePass = 'กรุณากรอกรหัสผ่านก่อนยืนยัน';
+        this.valuePass = 'กรุณากรอกข้อมูลก่อนตรวจสอบ';
       }
     } else {
       this.valuePass = 'รหัสผ่านไม่ถูกต้อง โปรดป้อนให้เหมือนกันอีกครั้ง' ;

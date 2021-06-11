@@ -101,10 +101,10 @@
           <ion-label>ประวัติกิจกรรม</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button (click)="presentToast()">
+        <ion-tab-button (click)="gotoPage(this.urlLink[1])">
           <ion-icon name="list"></ion-icon>
           <ion-label>กิจกรรมของคุณ</ion-label>
-          <ion-badge color='warning'>1</ion-badge>
+          <ion-badge color='warning'>{{this.event}}</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button (click)="gotoPage(this.urlLink[2])" >
