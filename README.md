@@ -1,5 +1,4 @@
 # HealthyTime
-=======
 ## SeniorProject
 SeniorProject Science UBU #60
 ชื่อโครงการ (ภาษาไทย/English) : แอปพลิเคชันจัดสรรเวลาเพื่อสุขภาพ ( Healthy Time )
@@ -10,9 +9,16 @@ node.js - [Download page](https://nodejs.org/en/download/) . <br />
 npm - comes with node [Download Page](https://www.npmjs.com/). <br />
 
 ## Installation
+install ionic
 ```bash
 npm install -g @ionic/cli cordova-res
+```
+clone project
+```bash
 git clone https://github.com/Nattsumi006/SeniorProject.git healthy-time
+```
+runproject
+```bash
 cd healthy-time && npm install && ionic serve
 ```
 
