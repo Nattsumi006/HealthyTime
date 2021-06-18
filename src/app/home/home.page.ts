@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, IonSlides, NavController, ToastController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { File } from '@ionic-native/file/ngx';
 
 interface Goal {
   round: number;
@@ -28,6 +27,11 @@ export class HomePage {
   myDate = new Date();
   date: any = new Date().toISOString();
   roundbar: number;
+  slideOptions = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    speed: 600,
+  };
 
   // GOAL
   goalDone: Goal[];
@@ -56,7 +60,6 @@ export class HomePage {
     public toastController: ToastController,
     public alertCtrl: AlertController,
     public statusBar: StatusBar,
-    private file: File
     ) {
       this.initializeApp();
     }
@@ -90,6 +93,11 @@ export class HomePage {
       } else {
         this.card = ((this.myDate.getHours() - 1 ) / 2);
       }
+      this.slideOptions = {
+        initialSlide: this.card,
+        slidesPerView: 1,
+        speed: 600,
+      };
       for (let index = 0; index < 3; index++) {
         if (this.card + index > 11 ) {
           this.clockCard.push(this.myclock.dataclock[this.selectClock][this.card - index - 8 ]);
@@ -100,6 +108,9 @@ export class HomePage {
     });
   }
   // metthod for set MY CLOCK CARD
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
 
   // method for CHANGE PAGE
   gotoPage(np: string) {
@@ -208,8 +219,6 @@ export class HomePage {
   }
 
   confirm() {
-    this.file.removeFile(this.file.dataDirectory, './assets/data-myevent/myevent.json');
-    // tslint:disable-next-line: max-line-length
-    // this.file.writeFile(this.file.dataDirectory, './assets/data-myevent/myevent.json', 'hello,world', {replace: true}).then(_ => console.log('Directory exists')).catch(err => console.log('Directory doesn\'t exist'));
+    
   }
 }

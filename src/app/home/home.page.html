@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-grid>
-    <ion-slides slidesPerView="1" class="showion-slides">
+    <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
       <ion-slide *ngFor="let item of bodyclock">
         <ion-card>
           <ion-img src={{item.img}}></ion-img>
