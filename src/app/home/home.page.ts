@@ -38,10 +38,10 @@ export class HomePage {
   goal: Goal[] = [
     {
       round : 1,
-      event : 'ทานมื้อเช้า'
+      event : 'อ่านหนังสือ 10 นาที'
     }, {
       round : 1,
-      event : 'พักสายตา 10 นาที'
+      event : 'พักสายตา 20 นาที'
     }, {
       round : 8,
       event : 'ดื่มน้ำ'
@@ -49,8 +49,8 @@ export class HomePage {
       round : 1,
       event : 'ออกกำลังกาย 30 นาที'
     }, {
-      round : 1,
-      event : 'ออกกำลังกาย 30 นาที'
+      round : 2,
+      event : 'ทานผักหรือผลไม้'
     },
   ];
   event: any;
@@ -188,7 +188,7 @@ export class HomePage {
           side: 'end',
           icon: 'checkmark-sharp',
           text: 'สำเร็จ',
-          handler: () => {console.log('+20 clicked'); this.runDeterminateProgress(); }
+          handler: () => {console.log();}
         }
       ]
     });
@@ -198,18 +198,45 @@ export class HomePage {
     this.goal.splice(i, 1);
   }
 
-  // GOAL show Point
+  // medthod GOAL
+  async editGoal(i) {
+    const prompt = await this.alertCtrl.create({
+      header: 'แก้ไขกิจกรรมที่ส่งเสริมสุชภาพ',
+      message: 'ป้อนหัวเรื่องลักษณะข้อความที่ต้องการ',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          value: this.goal[i].event,
+          placeholder: 'กิจกรรมที่ส่งเสริมสุชภาพ เช่น ออกกำลังกาย',
+        },
+      ],
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          handler: data => {console.log('edit_Cancel');}
+        },
+        {
+          text: 'บันทึก',
+          handler: data => {
+            this.goal[i].event = data.name1;
+            console.log('ข้อมูลถูกแก้ไข : ' + data.name1);
+          }
+        }
+      ]
+    });
+    await prompt.present();
+
+  }
   runDeterminateProgress() {
     this.numProgress = this.numProgress + 20;
-    {
-      setTimeout(() => {
-        const apc = (this.numProgress / 100);
-        console.log(apc);
-        this.p_bar_value = apc;
+    { setTimeout(() => {
+      const apc = (this.numProgress / 100);
+      console.log(apc);
+      this.p_bar_value = apc;
       }, 30 * this.numProgress);
     }
   }
-
   setRound(i: number) {
     this.roundbar = this.roundbar + 1;
     this.runDeterminateProgress();
@@ -217,6 +244,7 @@ export class HomePage {
     console.log(check);
     this.delets(i);
   }
+  
 
   confirm() {
     
