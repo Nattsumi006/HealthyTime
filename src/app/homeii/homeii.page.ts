@@ -29,7 +29,7 @@ export class HomeiiPage implements OnInit {
   headclock: any;
   clockCard = new Array();
   card: number;
-  colorCard: String;
+
 
   myDate = new Date();
   date: any = new Date().toISOString();
@@ -80,24 +80,29 @@ export class HomeiiPage implements OnInit {
       const mem = JSON.parse(dataMember);
       this.dataMember = mem;
       console.log('ข้อมูลสมาชิก',this.dataMember);
+
+      const dataclock = this.activaterroute.snapshot.paramMap.get('dataMyclock');
+      const dc = JSON.parse(dataclock);
+      this.myclock = dc;
   }
   // LOAD DATA
   initializeApp(){
     fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
-      this.event = json;
       this.history = json;
+      this.event = json;
+      console.log( 'myhis : ',this.history)
       this.countEvent();
     });
     fetch('./assets/data-bodyclock/bodyclock.json').then(res => res.json()).then(json => {
       this.bodyclock = json;
     });
     fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
-      console.log('headclock have : ', json.headclock);
-      this.myclock = json.dataclock;
-      this.headclock = json.headclock;
+      this.myclock = json;
+      this.headclock = this.myclock.headclock;
       console.log( 'myclock : ',this.myclock)
-      console.log( 'myclock.dataclock.clockCard : ', this.clockCard );
       this.setClock(this.selectClock);
+      console.log( 'myclock.dataclock.clockCard : ', this.clockCard );
+      
     });
   }
 
@@ -116,12 +121,11 @@ export class HomeiiPage implements OnInit {
     };
     for (let index = 0; index < 3; index++) {
       if (this.card + index > 11 ) {
-        this.clockCard.push(this.myclock[i][this.card - index - 8 ]);
+        this.clockCard.push(this.myclock.dataclock[i][this.card - index - 8 ]);
       } else {
-        this.clockCard.push(this.myclock[i][this.card + index]);
+        this.clockCard.push(this.myclock.dataclock[i][this.card + index]);
       }
     }
-    this.colorCard = this.headclock[this.selectClock].color;
   }
 
   // method change CARD CLOCK
@@ -134,9 +138,9 @@ export class HomeiiPage implements OnInit {
     }
     for (let index = 0; index < 3; index++) {
       if (this.card + index > 11 ) {
-        this.clockCard.push(this.myclock[i][this.card - index - 8 ]);
+        this.clockCard[index] = this.myclock.dataclock[i][this.card - index - 8 ];
       } else {
-        this.clockCard.push(this.myclock[i][this.card + index]);
+        this.clockCard[index] = this.myclock.dataclock[i][this.card + index];
       }
     }
   }
@@ -151,14 +155,17 @@ export class HomeiiPage implements OnInit {
     const nextPage = np;
     switch (nextPage) {
       case this.urlLink[1]: //event
-        const dataEvent = JSON.stringify(this.event);
+        const dataEvent = JSON.stringify(this.event.myevent);
         this.navCtrl.navigateForward([nextPage,dataEvent]);
         break;
       case this.urlLink[0]: //history
-        this.navCtrl.navigateForward(nextPage);
+        console.log('history have',this.history.myevent);
+        const dataHistory = JSON.stringify(this.event.myevent);
+        this.navCtrl.navigateForward([nextPage,dataHistory]);
         break;
       case this.urlLink[2]: //myclock
-        this.navCtrl.navigateForward(nextPage);
+        const dataclock = JSON.stringify(this.myclock);
+        this.navCtrl.navigateForward([nextPage,dataclock]);
         break;
       default:
         break;
@@ -167,15 +174,13 @@ export class HomeiiPage implements OnInit {
 
   // method for countEvent
   countEvent(){
-    for (let i = 0; i < this.event.length; i++) {
-      for (let j = 0; j < this.event.length; j++) {
-        if (this.event[j][2].status === true) {
-            this.event.splice(j, 1);
-        } else {
-        }
+    this.count_event = 0;
+    for (let i = 0; i < this.event.myevent.length; i++) {
+      console.log(this.event.myevent[i][2].status);
+        if (this.event.myevent[i][2].status != true) {
+            this.count_event = this.count_event+1
       }
     }
-    this.count_event = this.event.length;
   }
 
   // method for GOAL

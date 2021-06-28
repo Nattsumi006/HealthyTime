@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
     for (let index = 0; index < this.member.member.length; index++) {
       if (this.email == this.member.member[index][2].email) {
         if (this.password == this.member.member[index][3].password) {
-          this.dataMember.push([{"member_id":this.member.member[index][0].member_id},{"username":this.member.member[index][1].username}]);
+          this.dataMember.push({"member_id":this.member.member[index][0].member_id},{"username":this.member.member[index][1].username});
           const dMember = JSON.stringify(this.dataMember);
           this.navCtrl.navigateForward(['homeii',dMember]);
         } else {

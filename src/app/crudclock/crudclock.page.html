@@ -29,17 +29,17 @@
   <ion-text style="margin-left: 3%;"> โปรดระบุกิจกรรมในแต่ละช่วงเวลา </ion-text>
   <p></p>
 
-  <ion-item *ngFor="let item of time" lines="full">
-    <ion-label position="floating">{{item}}</ion-label>
-    <ion-input placeholder="กิจกรรมของคุณ"></ion-input>
+  <ion-item *ngFor="let obj of dataclock[0]" lines="full">
+    <ion-label position="floating">{{obj.time}}</ion-label>
+    <ion-input [(ngModel)]="obj.details"></ion-input>
   </ion-item>
 
   <ion-row>
     <ion-col>
-      <ion-button expand="block" color="success">confirm</ion-button>
+      <ion-button expand="block" color="success" (click)="save()">confirm</ion-button>
     </ion-col>
     <ion-col>
-      <ion-button expand="block" color="danger">cancel</ion-button>
+      <ion-button expand="block" color="danger" (click)="goback()">cancel</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

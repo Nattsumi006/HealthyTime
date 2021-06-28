@@ -81,8 +81,8 @@ export class HomePage {
       this.navCtrl.navigateForward(['login',dataMember]);
     });
     fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
-      this.event = json;
       this.history = json;
+      this.event = this.history;
       this.countEvent();
     });
     fetch('./assets/data-bodyclock/bodyclock.json').then(res => res.json()).then(json => {
@@ -164,11 +164,8 @@ export class HomePage {
   // method for countEvent
   countEvent(){
     for (let i = 0; i < this.event.length; i++) {
-      for (let j = 0; j < this.event.length; j++) {
-        if (this.event[j][2].status === true) {
-            this.event.splice(j, 1);
-        } else {
-        }
+      if (this.event[i][2].status === true) {
+          this.event.splice(i, 1);
       }
     }
     this.count_event = this.event.length;

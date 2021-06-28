@@ -3,7 +3,7 @@
     <ion-datetime [(ngModel)]="date" displayFormat="HH: mm" slot="start" pickerFormat=""></ion-datetime>
     <ion-title style="text-align: center;">Healthy Time</ion-title>
     <ion-chip slot="end" (click)="gotoPage(this.urlLink[4])">
-      <ion-label>Nattha</ion-label>
+      <ion-label>{{dataMember[1].username}}</ion-label>
     </ion-chip>
   </ion-toolbar>
 </ion-header>
@@ -25,7 +25,7 @@
       <ion-header style="left: 3%;"> นาฬิกาส่วนตัว </ion-header>
       <ion-item>
         <ion-label>เลือกนาฬิกาส่วนตัว</ion-label>
-        <ion-select [(ngModel)]="selectClock" (ionChange)="setClock(selectClock)">
+        <ion-select [(ngModel)]="selectClock" (ionChange)="changeClock(selectClock)">
           <ion-select-option *ngFor="let c of headclock" [value]="c.indexclock">{{c.name}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -33,7 +33,7 @@
 
       <ion-row class="ac-card">
       <ion-col *ngFor="let item of clockCard">
-        <ion-card color={{colorCard}}>
+        <ion-card color={{headclock[selectClock].color}}>
           <ion-card-header> {{this.item['time']}} </ion-card-header>
           <ion-card-content> {{this.item['details']}} </ion-card-content>
         </ion-card>

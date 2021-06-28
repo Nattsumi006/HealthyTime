@@ -12,11 +12,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'myclock',
+    path: 'myclock/:dataMyclock',
     loadChildren: () => import('./myclock/myclock.module').then( m => m.MyclockPageModule)
   },
   {
-    path: 'history',
+    path: 'history/:dataHistory',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
   },
   {
-    path: 'crudclock',
+    path: 'crudclock/:dataMyclock',
     loadChildren: () => import('./crudclock/crudclock.module').then( m => m.CrudclockPageModule)
   },
   {
@@ -37,6 +37,10 @@ const routes: Routes = [
   },
   {
     path: 'homeii/:dMember',
+    loadChildren: () => import('./homeii/homeii.module').then( m => m.HomeiiPageModule)
+  },
+  {
+    path: 'homeii/:dataMyclock',
     loadChildren: () => import('./homeii/homeii.module').then( m => m.HomeiiPageModule)
   },
 

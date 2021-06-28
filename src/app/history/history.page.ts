@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
@@ -7,45 +8,16 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['./history.page.scss'],
 })
 export class HistoryPage implements OnInit {
+  history: any;
+  constructor(
+    public navCtrl: NavController , 
+    public alertCtrl: AlertController,
+    private activaterroute: ActivatedRoute) {}
 
-  his = [
-    {
-      title: 'ประชุมโครงการ เรื่องการเลือกฐานข้อมูล',
-      time: '18:00',
-    },
-    {
-      title: 'นัดทานข้าวกับลุงพล',
-      time: '17:00',
-    },
-    {
-      title: 'ประชุมโครงการ แก้ไข หน้าแสดงผล',
-      time: '15:00',
-    },
-    {
-      title: 'นัดออกกำลังกายกับดอล่า',
-      time: '10:00',
-    },
-    {
-      title: 'ซื้อของเตรียมปาร์ตี้',
-      time: '09:00',
-    },
-  ];
-
-  mhis = [
-    {
-      title: 'ประชุมกิจกรรม "น้องใหม่สาขา" ทุกชั้นปี',
-      time: '17:00',
-    },
-    {
-      title: 'ประชุมกิจกรรม "แนะนำรุ่นน้อง"',
-      time: '13:00',
-    },
-  ];
-
-  constructor(public navCtrl: NavController , public alertCtrl: AlertController) { }
   goback() {
     this.navCtrl.pop();
   }
+
   async edit(i) {
     const prompt = await this.alertCtrl.create({
       header: 'แก้ไขหัวเรื่อง',
@@ -68,7 +40,7 @@ export class HistoryPage implements OnInit {
         {
           text: 'บันทึก',
           handler: data => {
-            this.his[i].title = data.name1;
+            this.history[i].title = data.name1;
             console.log('ข้อมูลถูกแก้ไข : ' + data.name1);
           }
         }
@@ -79,10 +51,21 @@ export class HistoryPage implements OnInit {
   }
 
   delets(i) {
-    this.his.splice(i, 1);
+    this.history.splice(i, 1);
   }
 
   ngOnInit() {
+      const dataRecv = this.activaterroute.snapshot.paramMap.get('dataHistory');
+      const obj = JSON.parse(dataRecv);
+      this.history = obj;
+      console.log(this.history.length);
+      for (let index = 0; index < this.history.length; index++) {
+        if (this.history[index].status != true) {
+          this.delets(index);
+        }
+      }
   }
-
 }
+
+
+
