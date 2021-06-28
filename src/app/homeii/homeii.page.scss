@@ -1,0 +1,100 @@
+ion-header {
+    font-family:Mitr !important;
+  }
+  
+  ion-fab-button[data-desc] {
+    position: relative;
+  }
+  
+  ion-fab-button[data-desc]::after {
+    position: absolute;
+    content: attr(data-desc);
+    z-index: 1;
+    right: 55px;
+    bottom: 4px;
+    background-color: var(--ion-color-primary);
+    padding: 9px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
+  }
+  
+  ion-fab .fab-list-active .fab-backdrop {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    transition: -webkit-filter 200ms linear;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(100, 100, 100, 0.5);
+  }
+  
+  // body clock
+  .showion-slides{
+    text-align: center ;
+    ion-slide {
+      height: 100%;
+      width: 100% !important;
+      ion-card{
+        text-align: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  
+  #container {
+    text-align: center;
+  
+    left: 0;
+    right: 0;
+    top: 2%;
+  }
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+  
+    color: #8c8c8c;
+  
+    margin: 0;
+  }
+  
+  #container a {
+    text-decoration: none;
+  }
+  
+  // clock
+  .ac-card{
+    ion-col{
+      ion-card{
+        text-align: center;
+        margin: auto;
+      }
+    }
+  }
+  
+  .my-custom-class {
+    --background: #e5e5e5;
+  }
+  
+  
+  // score
+  .point-card{
+    ion-card{
+      text-align: left;
+      height: auto;
+      width: 100% !important;
+    }
+    ion-item{
+      font-family:Mitr !important;
+    }
+  }
+  

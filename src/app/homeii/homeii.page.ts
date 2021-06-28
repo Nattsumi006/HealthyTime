@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, IonSlides, NavController, ToastController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ActivatedRoute } from '@angular/router';
 
 interface Goal {
   round: number
@@ -8,13 +9,13 @@ interface Goal {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-homeii',
+  templateUrl: './homeii.page.html',
+  styleUrls: ['./homeii.page.scss'],
 })
-export class HomePage {
+export class HomeiiPage implements OnInit {
+
   urlLink: string[] = ['history', 'event', 'myclock', 'crudclock', 'signup', 'login'];
-  member: any;
   // BODY CLOCK
   bodyclock: any;
   slideOptions = {
@@ -63,23 +64,25 @@ export class HomePage {
   event: any;
   count_event: number;
   history:any;
+  dataMember: any;
 
   constructor(
     public navCtrl: NavController,
     public toastController: ToastController,
     public alertCtrl: AlertController,
     public statusBar: StatusBar,
+    private activaterroute: ActivatedRoute
     ) {
       this.initializeApp();
     }
-
+  ngOnInit() {
+      const dataMember = this.activaterroute.snapshot.paramMap.get('dMember');
+      const mem = JSON.parse(dataMember);
+      this.dataMember = mem;
+      console.log('ข้อมูลสมาชิก',this.dataMember);
+  }
   // LOAD DATA
   initializeApp(){
-    fetch('./assets/icon/member.json').then(res => res.json()).then(json => {
-      this.member = json;
-      const dataMember = JSON.stringify(this.member);
-      this.navCtrl.navigateForward(['login',dataMember]);
-    });
     fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
       this.event = json;
       this.history = json;
@@ -89,11 +92,12 @@ export class HomePage {
       this.bodyclock = json;
     });
     fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
-      this.myclock = json;
-    fetch('./assets/data-myclock/headclock.json').then(res => res.json()).then(json => {
-      this.headclock = json;
+      console.log('headclock have : ', json.headclock);
+      this.myclock = json.dataclock;
+      this.headclock = json.headclock;
+      console.log( 'myclock : ',this.myclock)
+      console.log( 'myclock.dataclock.clockCard : ', this.clockCard );
       this.setClock(this.selectClock);
-    })
     });
   }
 
@@ -112,9 +116,9 @@ export class HomePage {
     };
     for (let index = 0; index < 3; index++) {
       if (this.card + index > 11 ) {
-        this.clockCard.push(this.myclock.dataclock[i][this.card - index - 8 ]);
+        this.clockCard.push(this.myclock[i][this.card - index - 8 ]);
       } else {
-        this.clockCard.push(this.myclock.dataclock[i][this.card + index]);
+        this.clockCard.push(this.myclock[i][this.card + index]);
       }
     }
     this.colorCard = this.headclock[this.selectClock].color;
@@ -130,9 +134,9 @@ export class HomePage {
     }
     for (let index = 0; index < 3; index++) {
       if (this.card + index > 11 ) {
-        this.clockCard.push(this.myclock.dataclock[i][this.card - index - 8 ]);
+        this.clockCard.push(this.myclock[i][this.card - index - 8 ]);
       } else {
-        this.clockCard.push(this.myclock.dataclock[i][this.card + index]);
+        this.clockCard.push(this.myclock[i][this.card + index]);
       }
     }
   }
@@ -303,4 +307,5 @@ export class HomePage {
     });
     await prompt.present();
   }
+
 }

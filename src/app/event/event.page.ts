@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
@@ -11,24 +12,58 @@ export class EventPage implements OnInit {
   event: any ;
   date: any = new Date().toISOString();
 
-  constructor(public navCtrl: NavController , public alertCtrl: AlertController) { this.initializeApp(); }
+  constructor(
+    public navCtrl: NavController , 
+    public alertCtrl: AlertController,
+    private activaterroute: ActivatedRoute) {}
 
-  initializeApp(){
-    fetch('./assets/data-myevent/myevent.json').then(res => res.json()).then(json => {
-
-      this.event = json;
+  ngOnInit() {
+      const dataRecv = this.activaterroute.snapshot.paramMap.get('dataEvent');
+      const obj = JSON.parse(dataRecv);
+      this.event = obj;
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < this.event.length; i++) {
         this.check();
       }
-
-      console.log(this.event);
-    });
   }
 
   goback() {
     this.navCtrl.pop();
   }
+
+  async createEvent(){
+    const prompt = await this.alertCtrl.create({
+      header: 'เพิ่มกิจกรรมที่ต้องทำ',
+      message: 'กรอกข้อมูลกิจกรรมที่ต้องการ',
+      inputs: [
+        {
+          name: 'event',
+          type: 'text',
+          placeholder: 'หัวเรื่อง เช่น ออกกำลังกาย',
+        },
+        {
+          name: 'time',
+          type: 'time',
+        },
+      ],
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          handler: data => {
+            console.log('Create_Cancel');
+          }
+        },
+        {
+          text: 'บันทึก',
+          handler: data => {
+            this.event.push([{'name': data.event},{'time':data.time},{'status':false}]);
+          }
+        }
+      ]
+    });
+    await prompt.present();
+  }
+
   check(){
     for (let i = 0; i < this.event.length; i++) {
       if (this.event[i][2].status === true) {
@@ -74,7 +109,6 @@ export class EventPage implements OnInit {
     this.event.splice(i, 1);
   }
 
-  ngOnInit() {
-  }
+  
 
 }

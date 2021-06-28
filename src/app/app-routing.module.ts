@@ -20,20 +20,26 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
-    path: 'event',
+    path: 'event/:dataEvent',
     loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
   },
   {
     path: 'crudclock',
     loadChildren: () => import('./crudclock/crudclock.module').then( m => m.CrudclockPageModule)
-  },  {
-    path: 'signup',
+  },
+  {
+    path: 'signup/:Member',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
   {
-    path: 'login',
+    path: 'login/:dataMember',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'homeii/:dMember',
+    loadChildren: () => import('./homeii/homeii.module').then( m => m.HomeiiPageModule)
+  },
+
 
 ];
 

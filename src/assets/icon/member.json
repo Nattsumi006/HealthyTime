@@ -1,0 +1,8 @@
+{
+    "member":[
+        [{"member_id": 1000},{"username":"Lita"},{"email":"lita@gmail.com"},{"password":"1000"},{"score": 1}],
+        [{"member_id": 1001},{"username":"Chacha"},{"email":"chacha@gmail.com"},{"password":"1001"},{"score": 1}],
+        [{"member_id": 1002},{"username":"nan"},{"email":"nan@g.com"},{"password":"0000"},{"score": 0}]
+    ],
+    "admin":[[{"member_id":9999},{"username":"nattsumi"},{"email":"nattsumi.kub@gmail.com"},{"password":"0066"}]]
+}

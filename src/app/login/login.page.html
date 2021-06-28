@@ -1,10 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
-    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-title>HealthyTime</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item lines='full'>
+    <ion-text style="text-align: center;">กรุณาเข้าสู่ระบบก่อนใช้งาน</ion-text>
+  </ion-item>
+  <ion-list>
+      <ion-item lines='none'>
+        <ion-input type="text" placeholder="อีเมล" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item line='none'>
+        <ion-input type="password" placeholder="รหัสผ่าน" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-button expand="full" class="ion-padding" color="success" (click)="login()">เข้าสู่ระบบ</ion-button>
+      <ion-button expand="full" class="ion-padding" color="warning" (click)="reg()">ลงทะเบียน</ion-button>
+  </ion-list>
 </ion-content>

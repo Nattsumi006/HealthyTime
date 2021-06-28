@@ -12,7 +12,7 @@ export class MyclockPage implements OnInit {
   constructor(public navCtrl: NavController, ) {this.initializeApp(); }
 
   initializeApp(){
-    fetch('./assets/data-myclock/myclock.json').then(res => res.json()).then(json => {
+    fetch('./assets/data-myclock/headclock.json').then(res => res.json()).then(json => {
 
       this.myclock = json;
     });

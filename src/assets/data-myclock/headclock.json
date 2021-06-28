@@ -1,0 +1,4 @@
+[
+  {	"name"	:	"นาฬิกาพื้นฐาน"	,	"indexclock"	:	0	,	"color"	:	"primary"	}	,
+  {	"name"	:	"นาฬิกากินแบบ IF"	,	"indexclock"	:	1	,	"color"	:	"success"	}
+]
