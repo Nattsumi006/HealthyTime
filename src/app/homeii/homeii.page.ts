@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, IonSlides, NavController, ToastController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ActivatedRoute } from '@angular/router';
+//import { HTTP } from '@ionic-native/http/ngx';
 
 interface Goal {
   round: number

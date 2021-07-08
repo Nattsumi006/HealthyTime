@@ -7,6 +7,11 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { File } from '@ionic-native/file/ngx';
 
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { Network } from '@ionic-native/network/ngx';
+//import { HTTP } from '@ionic-native/http/ngx';
+//import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 

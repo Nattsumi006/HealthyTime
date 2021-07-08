@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 
+//import { Network } from '@ionic-native/network/ngx';
+//import { HTTP } from '@ionic-native/http/ngx';
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
 @Component({
   selector: 'app-myclock',
   templateUrl: './myclock.page.html',
